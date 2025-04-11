@@ -43,9 +43,3 @@ jobs:
           version=${{ steps.version.outputs.version }}
           git tag -f $version
           git push origin -f $version
-
-      - name: Trigger NuGet Publish
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: publish.yml
-          token: ${{ secrets.GITHUB_TOKEN }}
