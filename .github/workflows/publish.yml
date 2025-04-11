@@ -26,19 +26,14 @@ jobs:
         id: version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
-      - name: Inject version into .csproj and .nuspec
-        run: |
-          sed -i "s|<Version>.*</Version>|<Version>${VERSION}</Version>|" $SOURCE_ROOT/ObservableGenerator.csproj
-          sed -i "s|<version>.*</version>|<version>${VERSION}</version>|" $SOURCE_ROOT/ObservableGenerator.nuspec
-
       - name: Restore dependencies
         run: dotnet restore ${{ env.SOURCE_ROOT }}
 
-      - name: Build project
-        run: dotnet build --no-restore -c Release ${{ env.SOURCE_ROOT }}
+      - name: Build project with version
+        run: dotnet build --no-restore -c Release ${{ env.SOURCE_ROOT }} /p:Version=${VERSION}
 
-      - name: Pack NuGet package
-        run: dotnet pack --no-build -c Release ${{ env.SOURCE_ROOT }}
+      - name: Pack NuGet package with version
+        run: dotnet pack --no-build -c Release ${{ env.SOURCE_ROOT }} /p:Version=${VERSION}
 
       - name: Push package to NuGet
         run: dotnet nuget push ${{ env.SOURCE_ROOT }}/bin/Release/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
