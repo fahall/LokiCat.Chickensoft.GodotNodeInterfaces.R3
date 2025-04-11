@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <PackageId>LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageId>
