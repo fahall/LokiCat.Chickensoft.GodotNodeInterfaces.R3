@@ -1,0 +1,29 @@
+﻿name: Publish NuGet
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore
+        run: dotnet restore src/ObservableGenerator
+
+      - name: Build
+        run: dotnet build -c Release src/ObservableGenerator
+
+      - name: Pack
+        run: dotnet pack -c Release src/ObservableGenerator --no-build
+
+      - name: Push to NuGet
+        run: dotnet nuget push src/ObservableGenerator/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
