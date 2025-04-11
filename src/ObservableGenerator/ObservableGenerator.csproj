@@ -14,8 +14,13 @@
         <Description>Generates AsObservable extensions for GodotNodeInterfaces</Description>
         <PackageTags>godot r3 roslyn rx observable</PackageTags>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+    
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
         <PackageReference Include="Chickensoft.GodotNodeInterfaces" Version="2.4.0" />
