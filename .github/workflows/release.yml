@@ -31,7 +31,7 @@ jobs:
     outputs:
       should-deploy: ${{ steps.check-release.outputs.should-deploy }}
 
-  run_test:
+  run-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
