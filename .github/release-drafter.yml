@@ -1,6 +1,4 @@
-﻿# File: .github/release-drafter.yml
-
-categories:
+﻿categories:
   - title: "🚀 Features"
     label: "feature"
   - title: "🐛 Bug Fixes"
@@ -11,12 +9,16 @@ categories:
   - title: "🧹 Chores"
     labels:
       - "chore"
+
 exclude-labels:
   - "skip-changelog"
 
 template: |
   ## What’s Changed
   $CHANGES
+
+change-template: '- $TITLE (#$NUMBER)'
+no-changes-template: '- No user-facing changes'
 
 tag-template: v$NEXT_PATCH_VERSION
 name-template: v$NEXT_PATCH_VERSION

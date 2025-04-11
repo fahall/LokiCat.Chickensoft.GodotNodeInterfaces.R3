@@ -31,7 +31,7 @@ jobs:
 
       - name: Extract version from draft title
         run: |
-          version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\\d+\\.\\d+\\.\\d+')
+          version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\d+\.\d+\.\d+')
           echo "VERSION=${version#v}" >> $GITHUB_ENV
 
       - name: Tag the commit with release version
