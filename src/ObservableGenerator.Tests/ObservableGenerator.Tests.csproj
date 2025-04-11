@@ -4,7 +4,10 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-
+        <PackageProjectUrl>https://github.com/fahall/LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/fahall/LokiCat.Chickensoft.GodotNodeInterfaces.R3.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
     </PropertyGroup>
