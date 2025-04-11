@@ -22,9 +22,13 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Extract version from tag
+      - name: Get version from latest Git tag
         id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+        run: |
+          git fetch --tags
+          VERSION=$(git describe --tags --abbrev=0)
+          VERSION=${VERSION#v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.SOURCE_ROOT }}
