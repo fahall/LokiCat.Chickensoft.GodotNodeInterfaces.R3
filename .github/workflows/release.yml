@@ -35,12 +35,14 @@ jobs:
           version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\d+\.\d+\.\d+')
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      - name: Create Git tag
+      - name: Force-create Git tag (overwrite if exists)
         run: |
+          git fetch --tags
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git tag ${{ steps.version.outputs.version }}
-          git push origin ${{ steps.version.outputs.version }}
+          version=${{ steps.version.outputs.version }}
+          git tag -f $version
+          git push origin -f $version
 
       - name: Trigger NuGet Publish
         uses: benc-uk/workflow-dispatch@v1

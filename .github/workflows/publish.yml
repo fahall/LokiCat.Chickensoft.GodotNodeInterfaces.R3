@@ -5,8 +5,10 @@ on:
     workflows: ["Auto Release"]
     types:
       - completed
+
 jobs:
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     env:
       SOURCE_ROOT: src/ObservableGenerator
