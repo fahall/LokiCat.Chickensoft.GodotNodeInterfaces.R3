@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   check-deploy-status:
@@ -28,7 +31,7 @@ jobs:
     outputs:
       should-deploy: ${{ steps.check-release.outputs.should-deploy }}
 
-  run-test:
+  run_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
