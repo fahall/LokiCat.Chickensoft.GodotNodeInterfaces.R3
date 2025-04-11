@@ -32,14 +32,13 @@ jobs:
       - name: Extract version from draft title
         id: version
         run: |
+          echo "GITHUB_REF = $GITHUB_REF"
           version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\d+\.\d+\.\d+')
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      - name: Force-create Git tag (overwrite if exists)
+      - name: Tag the commit with release version
         run: |
-          git fetch --tags
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          version=${{ steps.version.outputs.version }}
-          git tag -f $version
-          git push origin -f $version
+          git tag -f ${{ steps.version.outputs.version }}
+          git push origin -f ${{ steps.version.outputs.version }}

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>LokiCat.Chickensoft.GodotNodeInterfaces.R3</id>
-        <version>1.0.0</version>
+        <version>0.0.0</version>
         <authors>Alex Hall</authors>
         <description>Generates AsObservable extensions for GodotNodeInterfaces</description>
         <tags>godot r3 roslyn rx observable analyzer</tags>
