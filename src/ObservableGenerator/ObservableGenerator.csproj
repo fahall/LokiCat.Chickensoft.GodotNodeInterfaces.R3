@@ -7,7 +7,6 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-
         <PackageId>LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageId>
         <Version>1.0.0</Version>
         <Authors>Alex Hall</Authors>
@@ -22,11 +21,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="icon.png" Pack="true" PackagePath="../" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="../docs" />
+        <None Include="../icon.png" Pack="true" PackagePath="/"/>
+        <None Include="docs/README.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
     
     <ItemGroup>
