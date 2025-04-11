@@ -1,0 +1,22 @@
+﻿# File: .github/release-drafter.yml
+
+categories:
+  - title: "🚀 Features"
+    label: "feature"
+  - title: "🐛 Bug Fixes"
+    labels:
+      - "fix"
+      - "bugfix"
+      - "bug"
+  - title: "🧹 Chores"
+    labels:
+      - "chore"
+exclude-labels:
+  - "skip-changelog"
+
+template: |
+  ## What’s Changed
+  $CHANGES
+
+tag-template: v$NEXT_PATCH_VERSION
+name-template: v$NEXT_PATCH_VERSION

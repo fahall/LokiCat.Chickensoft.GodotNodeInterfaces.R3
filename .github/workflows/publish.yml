@@ -1,0 +1,33 @@
+﻿name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_ROOT: src/ObservableGenerator
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SOURCE_ROOT }}
+
+      - name: Build project
+        run: dotnet build --no-restore -c Release ${{ env.SOURCE_ROOT }}
+
+      - name: Pack NuGet package
+        run: dotnet pack --no-build -c Release ${{ env.SOURCE_ROOT }}
+
+      - name: Push package to NuGet
+        run: dotnet nuget push ${{ env.SOURCE_ROOT }}/bin/Release/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate

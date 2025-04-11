@@ -1,0 +1,7 @@
+﻿# File: .github/pr-labeler.yml
+
+# Add labels automatically based on file paths in a PR
+
+"src/**/*.cs": ["feature"]
+"**/*.csproj": ["chore"]
+".github/workflows/*.yml": ["chore"]
