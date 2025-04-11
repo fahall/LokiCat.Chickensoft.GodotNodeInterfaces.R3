@@ -1,14 +1,14 @@
-﻿name: Publish NuGet Package
+﻿# File: .github/workflows/publish.yml
+
+name: Publish NuGet Package
 
 on:
-  workflow_run:
-    workflows: ["Auto Release"]
-    types:
-      - completed
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     env:
       SOURCE_ROOT: src/ObservableGenerator
@@ -21,6 +21,15 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.x'
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Inject version into .csproj and .nuspec
+        run: |
+          sed -i "s|<Version>.*</Version>|<Version>${VERSION}</Version>|" $SOURCE_ROOT/ObservableGenerator.csproj
+          sed -i "s|<version>.*</version>|<version>${VERSION}</version>|" $SOURCE_ROOT/ObservableGenerator.nuspec
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.SOURCE_ROOT }}

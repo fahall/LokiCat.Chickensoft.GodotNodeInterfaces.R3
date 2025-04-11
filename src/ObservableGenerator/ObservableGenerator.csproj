@@ -8,7 +8,7 @@
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 
-        <PackageId>Chickensoft.GodotNodeInterfaces.R3</PackageId>
+        <PackageId>LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageId>
         <Version>1.0.0</Version>
         <Authors>Alex Hall</Authors>
         <Description>Generates AsObservable extensions for GodotNodeInterfaces</Description>
@@ -28,7 +28,7 @@
 
     <!-- Embed analyzer target file for consumers -->
     <ItemGroup>
-        <None Include="buildTransitive\Chickensoft.GodotNodeInterfaces.R3.targets" Pack="true" PackagePath="buildTransitive\Chickensoft.GodotNodeInterfaces.R3.targets" />
+        <None Include="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" Pack="true" PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
     </ItemGroup>
 
 </Project>
