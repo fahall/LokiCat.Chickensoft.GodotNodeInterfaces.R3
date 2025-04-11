@@ -24,6 +24,10 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <DebugType>portable</DebugType>
         <DebugSymbols>true</DebugSymbols>
+        <Deterministic>true</Deterministic>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <EmbedAllSources>true</EmbedAllSources>
+        <SourceLinkCreate>true</SourceLinkCreate>
     </PropertyGroup>
 
     <ItemGroup>
@@ -34,6 +38,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
         <PackageReference Include="Chickensoft.GodotNodeInterfaces" Version="2.4.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     </ItemGroup>
 
     <!-- Embed analyzer target file for consumers -->
