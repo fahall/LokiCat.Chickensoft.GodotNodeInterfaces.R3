@@ -32,7 +32,6 @@ jobs:
       - name: Extract version from draft title
         id: version
         run: |
-          echo "GITHUB_REF = $GITHUB_REF"
           version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\d+\.\d+\.\d+')
           echo "version=$version" >> $GITHUB_OUTPUT
 
@@ -42,3 +41,14 @@ jobs:
           git config user.email "github-actions@github.com"
           git tag -f ${{ steps.version.outputs.version }}
           git push origin -f ${{ steps.version.outputs.version }}
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          body: ${{ steps.draft.outputs.body }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
