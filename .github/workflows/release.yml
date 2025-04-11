@@ -1,53 +1,77 @@
-﻿name: Auto Release
+﻿name: Release
+
+description: Create GitHub release and trigger NuGet deploy.
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
 
 jobs:
-  release:
+  check-deploy-status:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node (for release-drafter)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Draft release notes
-        id: draft
-        uses: release-drafter/release-drafter@v6
-        with:
-          config-name: release-drafter.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract version from draft title
+      - uses: actions/checkout@v4
+      - name: Check for existing tag
+        id: check-release
         run: |
-          version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\d+\.\d+\.\d+')
-          echo "VERSION=${version#v}" >> $GITHUB_ENV
+          should_deploy="true"
+          if [[ "${{ github.event_name }}" != "workflow_dispatch" ]]; then
+            git fetch --tags origin ${{ github.sha }}
+            tags=$(git tag --points-at ${{ github.sha }} --list 'v*')
+            if [[ -n $tags ]]; then
+              should_deploy="false"
+            fi
+          fi
+          echo "should-deploy=$should_deploy" >> $GITHUB_OUTPUT
+    outputs:
+      should-deploy: ${{ steps.check-release.outputs.should-deploy }}
 
-      - name: Tag the commit with release version
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag -f ${{ steps.version.outputs.version }}
-          git push origin -f ${{ steps.version.outputs.version }}
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      - name: Run tests
+        run: dotnet test ${{ vars.SOURCE_ROOT }} --configuration Release
 
-      - name: Create GitHub Release
-        uses: ncipollo/release-action@v1
+  create-release:
+    runs-on: ubuntu-latest
+    needs: [ run-test, check-deploy-status ]
+    if: ${{ needs.check-deploy-status.outputs.should-deploy == 'true' }}
+    outputs:
+      release-tag: ${{ steps.version.outputs.version_tag }}
+      version-number: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
         with:
-          tag: ${{ steps.version.outputs.version }}
+          fetch-depth: 0
+
+      - uses: paulhatch/semantic-version@v5.4.0
+        id: version
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          version_format: "${major}.${minor}.${patch}"
+          bump_each_commit: true
+          search_commit_body: true
+
+      - uses: release-drafter/release-drafter@v6
+        id: create-release
+        with:
           name: ${{ steps.version.outputs.version }}
-          body: ${{ steps.draft.outputs.body }}
-          draft: false
-          prerelease: false
+          tag: ${{ steps.version.outputs.version_tag }}
+          publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-nuget:
+    uses: ./.github/workflows/deploy-nuget.yml
+    needs: [ create-release, run-test ]
+    secrets: inherit
+    if: ${{ needs.create-release.outputs.release-tag != '' }}
+    with:
+      deploy: true
