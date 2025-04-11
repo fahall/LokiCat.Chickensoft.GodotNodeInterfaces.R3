@@ -1,0 +1,49 @@
+﻿name: Auto Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node (for release-drafter)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Draft release notes
+        id: draft
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version from draft title
+        id: version
+        run: |
+          version=$(echo "${{ steps.draft.outputs.name }}" | grep -oP 'v\d+\.\d+\.\d+')
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Create Git tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag ${{ steps.version.outputs.version }}
+          git push origin ${{ steps.version.outputs.version }}
+
+      - name: Trigger NuGet Publish
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: publish.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
