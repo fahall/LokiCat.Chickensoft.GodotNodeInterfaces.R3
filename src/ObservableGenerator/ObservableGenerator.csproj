@@ -29,7 +29,6 @@
         <EmbedAllSources>true</EmbedAllSources>
         <SourceLinkCreate>true</SourceLinkCreate>
         <OutputType>Library</OutputType>
-        <OutputPath>analyzers/dotnet/cs/</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <None Include="../icon.png" Pack="true" PackagePath="/" />
@@ -42,11 +41,20 @@
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     </ItemGroup>
-
+    <ItemGroup>
+        <None Include="analyzers/dotnet/cs/$(AssemblyName).dll"
+              Pack="true"
+              PackagePath="analyzers/dotnet/cs/" />
+    </ItemGroup>
     <ItemGroup>
         <!-- Embed analyzer target for consumers -->
         <None Include="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets"
               Pack="true"
               PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
     </ItemGroup>
+    <Target Name="CopyAnalyzerToPackDir" AfterTargets="Build">
+        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll"
+              DestinationFolder="$(ProjectDir)analyzers/dotnet/cs"
+              SkipUnchangedFiles="true" />
+    </Target>
 </Project>
