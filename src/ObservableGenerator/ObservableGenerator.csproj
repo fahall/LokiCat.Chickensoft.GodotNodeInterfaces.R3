@@ -48,6 +48,9 @@
         <None Include="analyzers/dotnet/cs/$(AssemblyName).pdb"
               Pack="true"
               PackagePath="analyzers/dotnet/cs/" />
+        <None Include="analyzers/dotnet/cs/$(AssemblyName).xml"
+              Pack="true"
+              PackagePath="analyzers/dotnet/cs/" Condition="Exists('analyzers/dotnet/cs/$(AssemblyName).xml')" />
     </ItemGroup>
     <ItemGroup>
         <!-- Embed analyzer target for consumers -->
@@ -56,7 +59,12 @@
               PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
     </ItemGroup>
     <Target Name="CopyAnalyzerToPackDir" AfterTargets="Build">
-        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll"
+        <ItemGroup>
+            <AnalyzerFiles Include="$(OutputPath)$(AssemblyName).dll" />
+            <AnalyzerFiles Include="$(OutputPath)$(AssemblyName).pdb" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
+            <AnalyzerFiles Include="$(OutputPath)$(AssemblyName).xml" Condition="Exists('$(OutputPath)$(AssemblyName).xml')" />
+        </ItemGroup>
+        <Copy SourceFiles="@(AnalyzerFiles)"
               DestinationFolder="$(ProjectDir)analyzers/dotnet/cs"
               SkipUnchangedFiles="true" />
     </Target>
