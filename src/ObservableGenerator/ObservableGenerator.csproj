@@ -45,6 +45,9 @@
         <None Include="analyzers/dotnet/cs/$(AssemblyName).dll"
               Pack="true"
               PackagePath="analyzers/dotnet/cs/" />
+        <None Include="analyzers/dotnet/cs/$(AssemblyName).pdb"
+              Pack="true"
+              PackagePath="analyzers/dotnet/cs/" />
     </ItemGroup>
     <ItemGroup>
         <!-- Embed analyzer target for consumers -->
