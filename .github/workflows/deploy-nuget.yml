@@ -44,7 +44,7 @@ jobs:
       
       # Create the NuGet package in the folder from the environment variable NuGetDirectory
       - run: dotnet build src/ObservableGenerator/ObservableGenerator.csproj --configuration Release
-      - run: dotnet pack src/ObservableGenerator/ObservableGenerator.csproj --no-build --configuration Release --output <output_dir>
+      - run: dotnet pack src/ObservableGenerator/ObservableGenerator.csproj --no-build --configuration Release --output ${{ env.NuGetDirectory }} /p:Version=${{ inputs.version }}
 
         
       # Publish the NuGet package as an artifact, so they can be used in the following jobs
