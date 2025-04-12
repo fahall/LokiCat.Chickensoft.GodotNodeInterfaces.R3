@@ -2,6 +2,6 @@
 <Project>
     <!-- Auto-import this analyzer when the NuGet package is installed -->
     <ItemGroup>
-        <Analyzer Include="$(MSBuildThisPackageDirectory)analyzers/dotnet/cs/$(AssemblyName).dll" />
+        <Analyzer Include="$(MSBuildThisPackageDirectory)analyzers/dotnet/cs/$(AnalyzerDllName)" />
     </ItemGroup>
 </Project>
