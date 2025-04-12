@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <PackageId>LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageId>
@@ -31,19 +31,26 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../icon.png" Pack="true" PackagePath="/"/>
-        <None Include="docs/README.md" Pack="true" PackagePath="/"/>
+        <None Include="../icon.png" Pack="true" PackagePath="/" />
+        <None Include="docs/README.md" Pack="true" PackagePath="/" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
         <PackageReference Include="Chickensoft.GodotNodeInterfaces" Version="2.4.0" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     </ItemGroup>
 
-    <!-- Embed analyzer target file for consumers -->
     <ItemGroup>
-        <None Include="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" Pack="true" PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
+        <!-- Embed analyzer target for consumers -->
+        <None Include="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets"
+              Pack="true"
+              PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Make the built DLL act as a Roslyn analyzer -->
+        <Analyzer Include="$(TargetPath)" />
     </ItemGroup>
 
 </Project>
