@@ -29,6 +29,7 @@
         <EmbedAllSources>true</EmbedAllSources>
         <SourceLinkCreate>true</SourceLinkCreate>
         <OutputType>Library</OutputType>
+        <OutputPath>analyzers/dotnet/cs/</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <None Include="../icon.png" Pack="true" PackagePath="/" />
@@ -47,10 +48,5 @@
         <None Include="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets"
               Pack="true"
               PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).dll"
-              Pack="true"
-              PackagePath="analyzers/dotnet/cs" />
     </ItemGroup>
 </Project>
