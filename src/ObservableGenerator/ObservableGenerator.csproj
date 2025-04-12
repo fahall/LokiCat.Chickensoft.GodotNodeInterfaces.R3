@@ -58,7 +58,7 @@
               Pack="true"
               PackagePath="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" />
     </ItemGroup>
-    <Target Name="CopyAnalyzerToPackDir" AfterTargets="Build">
+    <Target Name="CopyAnalyzerToPackDir" BeforeTargets="Pack">
         <ItemGroup>
             <AnalyzerFiles Include="$(OutputPath)$(AssemblyName).dll" />
             <AnalyzerFiles Include="$(OutputPath)$(AssemblyName).pdb" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
