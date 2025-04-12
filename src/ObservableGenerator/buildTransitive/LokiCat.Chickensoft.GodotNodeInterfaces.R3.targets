@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
-    <!-- Auto-import this analyzer when the NuGet package is installed -->
-    <ItemGroup>
-        <Analyzer Include="$(MSBuildThisPackageDirectory)analyzers/dotnet/cs/ObservableGenerator.dll" />
-    </ItemGroup>
-</Project>

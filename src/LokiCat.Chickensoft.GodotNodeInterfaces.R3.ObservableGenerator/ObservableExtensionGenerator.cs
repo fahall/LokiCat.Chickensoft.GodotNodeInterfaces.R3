@@ -1,11 +1,12 @@
 ﻿// File: ObservableExtensionGenerator.cs
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace ObservableGenerator
+namespace LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator
 {
     internal static class BuildGuard { }
     
@@ -29,6 +30,8 @@ namespace ObservableGenerator
         /// <param name="context"></param>
         public void Execute(GeneratorExecutionContext context)
         {
+            context.AddSource("DebugInfo.g.cs", SourceText.From("// Generator ran", Encoding.UTF8));
+
             foreach (var nextInterface in GetInterfaces(context))
             {
                 ExtendInterface(context, nextInterface);
@@ -37,13 +40,28 @@ namespace ObservableGenerator
 
         private static List<INamedTypeSymbol> GetInterfaces(GeneratorExecutionContext context)
         {
-            var godotInterfaces = context.Compilation
-                                         .GetSymbolsWithName(name => name.StartsWith("I") && name.Contains("Godot"), SymbolFilter.Type)
-                                         .OfType<INamedTypeSymbol>()
-                                         .Where(t => t.TypeKind == TypeKind.Interface && t.ContainingNamespace.ToDisplayString().Contains("Chickensoft.GodotNodeInterfaces"))
-                                         .ToList();
+            var interfaces = new List<INamedTypeSymbol>();
 
-            return godotInterfaces;
+            var globalNs = context.Compilation.GlobalNamespace;
+            var chickensoftNs = globalNs.GetNamespaceMembers()
+                                        .FirstOrDefault(ns => ns.Name == "Chickensoft")?
+                                        .GetNamespaceMembers()
+                                        .FirstOrDefault(ns => ns.Name == "GodotNodeInterfaces");
+
+            if (chickensoftNs is not null)
+            {
+                interfaces = chickensoftNs
+                             .GetNamespaceTypesRecursive()
+                             .Where(t => t.TypeKind == TypeKind.Interface)
+                             .ToList();
+            }
+
+            context.ReportDiagnostic(Diagnostic.Create(
+                                         new DiagnosticDescriptor("OBS001", "Observe", $"Found {interfaces.Count} GodotNodeInterfaces interfaces", "ObservableGenerator", DiagnosticSeverity.Info, true),
+                                         Location.None
+                                     ));
+
+            return interfaces;
         }
 
         private static void ExtendInterface(GeneratorExecutionContext context, INamedTypeSymbol anInterface)
@@ -59,12 +77,23 @@ namespace ObservableGenerator
 
             var sb = new StringBuilder();
             var shortName = anInterface.Name.TrimStart('I');
+            var ifaceNamespace = anInterface.ContainingNamespace.ToDisplayString();
 
-            sb.AppendLine("using System;");
-            sb.AppendLine("using System.Reactive;");
-            sb.AppendLine("using System.Reactive.Linq;");
-            sb.AppendLine("using System.Threading;");
-            sb.AppendLine($"public static class {shortName}Extensions");
+            var namespaces = new []
+            {
+
+                ifaceNamespace,
+                "R3",
+                "System",
+                "System.Threading",
+                "Chickensoft.GodotNodeInterfaces",
+            }.Distinct().ToList();
+            
+            foreach (var ns in namespaces)
+            {
+                sb.AppendLine($"using {ns};");
+            }
+            sb.AppendLine($"public static class {shortName}ObservableExtensions");
             sb.AppendLine("{");
 
             BuildEventWrappers(events, sb, anInterface);
@@ -134,5 +163,8 @@ namespace ObservableGenerator
                 $"    public static {returnType} On{ev.Name}AsObservable(this {iface.Name} self, CancellationToken cancellationToken = default) =>");
             sb.AppendLine($"        {body};\n");
         }
+        
+        public override string ToString() => "LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator";
+
     }
 }
