@@ -17,6 +17,10 @@ on:
         default: false
         description: "Deploy the package to NuGet"
         type: boolean
+      version:
+        required: true
+        type: string
+        description: "Semantic version number for the NuGet package"
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
@@ -40,8 +44,12 @@ jobs:
       
       # Create the NuGet package in the folder from the environment variable NuGetDirectory
       - run: dotnet build ${{ vars.SOURCE_ROOT }}/ObservableGenerator/ObservableGenerator.csproj --configuration Release
-      - run: dotnet pack ${{ vars.SOURCE_ROOT }}/ObservableGenerator/ObservableGenerator.csproj --no-build --configuration Release --output ${{ env.NuGetDirectory }}
-      
+      - run: dotnet pack ${{ vars.SOURCE_ROOT }} `
+               --no-build `
+               --configuration Release `
+               --output ${{ env.NuGetDirectory }} `
+               /p:Version=${{ inputs.version }}   
+        
       # Publish the NuGet package as an artifact, so they can be used in the following jobs
       - uses: actions/upload-artifact@v4
         with:
@@ -100,6 +108,17 @@ jobs:
       # Install the .NET SDK indicated in the global.json file
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
+
+        # Upload the NuGet package to GitHub Release page for easier inspection
+      - name: Upload NuGet assets to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          files: |
+            ${{ env.NuGetDirectory }}/*.nupkg
+            ${{ env.NuGetDirectory }}/*.snupkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Publish all NuGet packages to NuGet.org
       # Use --skip-duplicate to prevent errors if a package with the same version already exists.

@@ -45,8 +45,8 @@ jobs:
     needs: [ run-test, check-deploy-status ]
     if: ${{ needs.check-deploy-status.outputs.should-deploy == 'true' }}
     outputs:
-      release-tag: ${{ steps.version.outputs.version_tag }}
-      version-number: ${{ steps.version.outputs.version }}
+      version-number: ${{ steps.version.outputs.version }}      # e.g. 1.2.3
+      release-tag: ${{ steps.version.outputs.version_tag }}  # e.g. v1.2.3
     steps:
       - uses: actions/checkout@v4
         with:
@@ -70,6 +70,7 @@ jobs:
           publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
 
   deploy-nuget:
     uses: ./.github/workflows/deploy-nuget.yml
@@ -78,3 +79,4 @@ jobs:
     if: ${{ needs.create-release.outputs.release-tag != '' }}
     with:
       deploy: true
+      version: ${{ needs.create-release.outputs.version-number }}
