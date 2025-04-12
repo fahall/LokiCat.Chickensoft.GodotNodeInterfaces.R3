@@ -28,6 +28,7 @@
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
         <EmbedAllSources>true</EmbedAllSources>
         <SourceLinkCreate>true</SourceLinkCreate>
+        <OutputType>Library</OutputType>
     </PropertyGroup>
 
     <ItemGroup>

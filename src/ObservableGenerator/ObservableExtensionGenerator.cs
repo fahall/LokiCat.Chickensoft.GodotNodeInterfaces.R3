@@ -11,14 +11,24 @@ namespace ObservableGenerator
 {
     internal static class BuildGuard { }
     
+    /// <summary>
+    /// A source generator that generates extension methods for Godot Node interfaces provided by the Chickensoft.GodotNodeInterfaces package.
+    /// </summary>
     [Generator]
     public class ObservableExtensionGenerator : ISourceGenerator
     {
+        /// <summary>
+        /// Initializes the generator. This method is called once per compilation.
+        /// </summary>
         public void Initialize(GeneratorInitializationContext context)
         {
             // no-op for now
         }
 
+        /// <summary>
+        /// Run the generator. This method is called once per compilation.
+        /// </summary>
+        /// <param name="context"></param>
         public void Execute(GeneratorExecutionContext context)
         {
             foreach (var nextInterface in GetInterfaces(context))
