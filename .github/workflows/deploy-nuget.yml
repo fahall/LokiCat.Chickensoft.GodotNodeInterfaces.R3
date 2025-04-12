@@ -43,6 +43,7 @@ jobs:
         uses: actions/setup-dotnet@v4
       
       # Create the NuGet package in the folder from the environment variable NuGetDirectory
+      - run: dotnet restore src/ObservableGenerator/ObservableGenerator.csproj     
       - run: dotnet build src/ObservableGenerator/ObservableGenerator.csproj `
                --configuration Release `
       - run: dotnet pack src/ObservableGenerator/ObservableGenerator.csproj `

@@ -2,6 +2,6 @@
 <Project>
     <!-- Auto-import this analyzer when the NuGet package is installed -->
     <ItemGroup>
-        <Analyzer Include="$(MSBuildThisPackageDirectory)lib/net7.0/ObservableGenerator.dll" />
+        <Analyzer Include="$(MSBuildThisPackageDirectory)analyzers/dotnet/cs/$(AssemblyName).dll" />
     </ItemGroup>
 </Project>
