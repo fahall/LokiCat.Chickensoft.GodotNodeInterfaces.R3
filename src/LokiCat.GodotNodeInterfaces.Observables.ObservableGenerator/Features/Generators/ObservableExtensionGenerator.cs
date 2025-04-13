@@ -23,6 +23,16 @@ public class ObservableExtensionGenerator : ISourceGenerator
 
     public void Execute(GeneratorExecutionContext context)
     {
+        context.ReportDiagnostic(Diagnostic.Create(
+                                     new DiagnosticDescriptor(
+                                         id: "OBS000",
+                                         title: "Observable Generator Running",
+                                         messageFormat: "ObservableExtensionGenerator executed successfully.",
+                                         category: "ObservableGenerator",
+                                         defaultSeverity: DiagnosticSeverity.Info,
+                                         isEnabledByDefault: true),
+                                     Location.None));
+        
         try {
             foreach (var iface in GetInterfaces(context)) {
                 ExtendInterface(context, iface);
