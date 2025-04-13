@@ -46,7 +46,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
     {
         var godotInterfaces = context.Compilation.GlobalNamespace
                                      .GetNamespaceMembers()
-                                     .FirstOrDefault(n => n.Name == "LokiCat.GodotNodeInterfaces.Observables")
+                                     .FirstOrDefault(n => n.Name == "Chickensoft")
                                      ?
                                      .GetNamespaceMembers()
                                      .FirstOrDefault(n => n.Name == "GodotNodeInterfaces")
