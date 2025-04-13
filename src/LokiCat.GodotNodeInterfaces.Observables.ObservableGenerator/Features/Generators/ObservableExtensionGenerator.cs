@@ -23,6 +23,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
 
     public void Execute(GeneratorExecutionContext context)
     {
+        context.AddSource("ObservableGeneratorCanary.g.cs", SourceText.From("// Observable generator ran\n", Encoding.UTF8));
         context.ReportDiagnostic(Diagnostic.Create(
                                      new DiagnosticDescriptor(
                                          id: "OBS000",
