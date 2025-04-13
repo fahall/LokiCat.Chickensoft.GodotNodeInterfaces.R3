@@ -22,7 +22,7 @@
         <RepositoryUrl>https://github.com/fahall/LokiCat.GodotNodeInterfaces.Observables.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageReadmeFile>docs/README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <AssemblyName>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</AssemblyName>
@@ -45,7 +45,7 @@
         <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)\$(AssemblyName).pdb')" />
         <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)\$(AssemblyName).xml')" />
         <None Include="../icon.png" Pack="true" PackagePath="/" />
-        <None Include="docs/README.md" Pack="true" PackagePath="" />
+        <None Include="../../README.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
