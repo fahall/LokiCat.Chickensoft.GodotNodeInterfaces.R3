@@ -13,7 +13,10 @@ internal static class RoslynExtensions
             {
                 case INamespaceSymbol childNs:
                     foreach (var nested in childNs.GetNamespaceTypesRecursive())
+                    {
                         yield return nested;
+                    }
+
                     break;
                 case INamedTypeSymbol typeSymbol:
                     yield return typeSymbol;

@@ -10,11 +10,10 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator;
 
-internal static class BuildGuard { }
-
 [Generator]
 public class ObservableExtensionGenerator : ISourceGenerator
 {
+    private readonly IEventWrapperGenerator _wrapperGenerator = new EventWrapperGenerator(); 
     public void Initialize(GeneratorInitializationContext context)
     {
         // no-op
@@ -64,7 +63,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
         return godotInterfaces;
     }
 
-    private static void ExtendInterface(GeneratorExecutionContext context, INamedTypeSymbol iface)
+    private void ExtendInterface(GeneratorExecutionContext context, INamedTypeSymbol iface)
     {
         var events = iface.GetMembers()
                           .OfType<IEventSymbol>()
@@ -76,7 +75,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
             return;
         }
 
-        var wrappers = BuildEventWrappers(iface, events).ToArray();
+        var wrappers = _wrapperGenerator.BuildEventWrappers(iface, events).ToArray();
 
         if (wrappers.Length == 0)
         {
@@ -128,100 +127,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
         return sb.ToString();
     }
 
-    private static IEnumerable<string> BuildEventWrappers(INamedTypeSymbol iface, List<IEventSymbol> events) =>
-        events.SelectMany(e => GetEventWrapper(e, iface));
 
-    private static string[] GetEventWrapper(IEventSymbol ev, INamedTypeSymbol iface)
-    {
-        if (string.IsNullOrWhiteSpace(ev.Name) || ev.AddMethod == null || ev.RemoveMethod == null)
-        {
-            return [];
-        }
-
-        if (ev.Type is not INamedTypeSymbol { TypeKind: TypeKind.Delegate } handler)
-        {
-            return [];
-        }
-
-        var invoke = handler.DelegateInvokeMethod;
-
-        if (invoke is null)
-        {
-            return [];
-        }
-
-        var parameters = invoke.Parameters;
-        string returnType;
-        string body;
-        string handlerName = handler.ToGeneratorTypeString();
-        string delegateName = handler.Name;
-
-        // Detect if the delegate type has a usable constructor (e.g., public Foo(Action<X>))
-        bool hasConstructor = handler.Constructors.Any(c =>
-                                                           c.DeclaredAccessibility == Accessibility.Public &&
-                                                           c.Parameters.Length == 1 &&
-                                                           c.Parameters[0].Type.TypeKind == TypeKind.Delegate
-        );
-
-        if (parameters.Length == 1)
-        {
-            var p = parameters[0];
-            var paramType = p.Type.ToGeneratorTypeString();
-            returnType = $"Observable<{paramType}>";
-
-            var handlerExpression = hasConstructor
-                ? $"new {delegateName}(h)"
-                : $"({p.Name.EscapeIdentifier()}) => h({p.Name.EscapeIdentifier()})";
-
-            body = $"""
-                         Observable.FromEvent<{handlerName}, {paramType}>(
-                             h => {handlerExpression},
-                             h => self.{ev.Name} += h,
-                             h => self.{ev.Name} -= h,
-                             cancellationToken
-                         )
-                     """;
-        }
-        else if (parameters.Length > 1)
-        {
-            var tupleType = string.Join(", ", parameters.Select(p => p.Type.ToGeneratorTypeString()));
-            var argList = string.Join(", ", parameters.Select(p => p.Name.EscapeIdentifier()));
-            var paramList =
-                string.Join(
-                    ", ", parameters.Select(p => p.Type.ToGeneratorTypeString() + " " + p.Name.EscapeIdentifier()));
-            returnType = $"Observable<({tupleType})>";
-
-            var handlerExpression = hasConstructor
-                ? $"new {delegateName}(({paramList}) => h(({argList})))"
-                : $"({paramList}) => h(({argList}))";
-
-            body = $"""
-                         Observable.FromEvent<{handlerName}, ({tupleType})>(
-                             h => {handlerExpression},
-                             h => self.{ev.Name} += h,
-                             h => self.{ev.Name} -= h,
-                             cancellationToken
-                         )
-                     """;
-        }
-        else
-        {
-            returnType = "Observable<Unit>";
-            body = $"""
-                         Observable.FromEvent(
-                             h => self.{ev.Name} += h,
-                             h => self.{ev.Name} -= h,
-                             cancellationToken
-                         )
-                     """;
-        }
-
-        return
-        [
-            $"public static {returnType} On{ev.Name}AsObservable(this {iface.ToGeneratorTypeString()} self, CancellationToken cancellationToken = default) =>",
-            $"    {body};\n"
-        ];
-    }
 
     private static IEnumerable<string> GetRequiredNamespaces(INamedTypeSymbol iface, IEnumerable<IEventSymbol> events)
     {
@@ -232,14 +138,6 @@ public class ObservableExtensionGenerator : ISourceGenerator
             "R3",
             "Godot",
         };
-
-        void AddNamespace(INamespaceSymbol? ns)
-        {
-            if (ns != null && !ns.IsGlobalNamespace)
-            {
-                nsSet.Add(ns.ToDisplayString());
-            }
-        }
 
         AddNamespace(iface.ContainingNamespace);
 
@@ -275,23 +173,13 @@ public class ObservableExtensionGenerator : ISourceGenerator
         }
 
         return nsSet.OrderBy(n => n);
-    }
-}
 
-internal static class InterfaceExtensions
-{
-    public static string ShortName(this INamedTypeSymbol iface) =>
-        iface.Name.StartsWith("I") && iface.Name.Length > 1 && char.IsUpper(iface.Name[1])
-            ? iface.Name.Substring(1)
-            : iface.Name;
-
-    public static string EscapeIdentifier(this string name)
-    {
-        return SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None ? $"@{name}" : name;
-    }
-
-    public static string ToGeneratorTypeString(this ITypeSymbol iface)
-    {
-        return iface.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        void AddNamespace(INamespaceSymbol? ns)
+        {
+            if (ns != null && !ns.IsGlobalNamespace)
+            {
+                nsSet.Add(ns.ToDisplayString());
+            }
+        }
     }
 }
