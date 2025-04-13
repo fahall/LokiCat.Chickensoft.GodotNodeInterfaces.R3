@@ -39,6 +39,7 @@
 
     <PropertyGroup Condition="'$(BuildingForTest)' == 'true'">
         <IncludeBuildOutput>true</IncludeBuildOutput>
+        <IsRoslynComponent>false</IsRoslynComponent>
     </PropertyGroup>
 
     <!-- This ensures DLL, PDB, XML are placed in analyzers folder -->
