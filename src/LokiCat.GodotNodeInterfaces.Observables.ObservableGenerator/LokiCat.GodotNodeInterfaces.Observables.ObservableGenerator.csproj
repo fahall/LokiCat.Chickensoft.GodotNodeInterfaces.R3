@@ -34,7 +34,6 @@
         <Product>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</Product>
         <DebugSymbols>true</DebugSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <IncludeSource>true</IncludeSource>
         <IsRoslynComponent>true</IsRoslynComponent>
         <Nullable>enable</Nullable>
     </PropertyGroup>
