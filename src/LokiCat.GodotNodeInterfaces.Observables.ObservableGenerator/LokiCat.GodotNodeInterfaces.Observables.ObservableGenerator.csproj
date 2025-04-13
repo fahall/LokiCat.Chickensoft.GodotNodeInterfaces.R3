@@ -4,15 +4,22 @@
         <TargetFramework>net7.0</TargetFramework>
         <LangVersion>latest</LangVersion>
 
-        <!-- Ensure this is an analyzer, not a runtime library -->
+        <!-- Mark as a Roslyn analyzer package -->
         <IsRoslynComponent>true</IsRoslynComponent>
         <IncludeBuildOutput>false</IncludeBuildOutput>
-
-        <!-- Enable proper packaging -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <OutputPath>bin\Release\</OutputPath>
 
-        <!-- Package Metadata -->
+        <!-- Symbols + SourceLink -->
+        <DebugSymbols>true</DebugSymbols>
+        <EmbedAllSources>true</EmbedAllSources>
+        <SourceLinkCreate>true</SourceLinkCreate>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IncludeSource>true</IncludeSource>
+
+        <!-- Nullable + Strong typing -->
+        <Nullable>enable</Nullable>
+
+        <!-- NuGet Metadata -->
         <PackageId>LokiCat.GodotNodeInterfaces.Observables</PackageId>
         <Version>1.0.0</Version>
         <Authors>Alex Hall</Authors>
@@ -24,37 +31,24 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
-        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        <AssemblyName>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</AssemblyName>
-        <EmbedAllSources>true</EmbedAllSources>
-        <SourceLinkCreate>true</SourceLinkCreate>
         <AssemblyTitle>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</AssemblyTitle>
-        <Description>Generates AsObservable extensions for GodotNodeInterfaces</Description>
+        <AssemblyName>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</AssemblyName>
         <Company>LokiCat</Company>
         <Product>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</Product>
-        <DebugSymbols>true</DebugSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <IncludeSource>true</IncludeSource>
-        <IsRoslynComponent>true</IsRoslynComponent>
-        <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <!-- This ensures DLL, PDB, XML are placed in analyzers folder -->
     <ItemGroup>
-        <!-- These ensure the analyzer ends up in the correct NuGet folder -->
-        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-        <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)\$(AssemblyName).pdb')" />
-        <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)\$(AssemblyName).xml')" />
+        <Analyzer Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
+        <None Include="$(OutputPath)$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
+        <None Include="$(OutputPath)$(AssemblyName).xml" Pack="true" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)$(AssemblyName).xml')" />
         <None Include="../icon.png" Pack="true" PackagePath="/" />
         <None Include="../../README.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Properties\" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
