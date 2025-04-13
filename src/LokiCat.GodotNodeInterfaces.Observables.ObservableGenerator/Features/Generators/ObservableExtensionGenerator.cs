@@ -4,11 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.Interfaces;
+using LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.Roslyn;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 
-namespace LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator;
+namespace LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.Generators;
 
 [Generator]
 public class ObservableExtensionGenerator : ISourceGenerator
@@ -44,7 +46,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
     {
         var godotInterfaces = context.Compilation.GlobalNamespace
                                      .GetNamespaceMembers()
-                                     .FirstOrDefault(n => n.Name == "Chickensoft")
+                                     .FirstOrDefault(n => n.Name == "LokiCat.GodotNodeInterfaces.Observables")
                                      ?
                                      .GetNamespaceMembers()
                                      .FirstOrDefault(n => n.Name == "GodotNodeInterfaces")

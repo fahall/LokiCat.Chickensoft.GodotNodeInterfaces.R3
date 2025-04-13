@@ -13,25 +13,25 @@
         <OutputPath>bin\Release\</OutputPath>
 
         <!-- Package Metadata -->
-        <PackageId>LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageId>
+        <PackageId>LokiCat.GodotNodeInterfaces.Observables</PackageId>
         <Version>1.0.0</Version>
         <Authors>Alex Hall</Authors>
-        <Description>Generates AsObservable extensions for GodotNodeInterfaces</Description>
+        <Description>Generates AsObservable extensions for Chickensoft GodotNodeInterfaces</Description>
         <PackageTags>godot r3 roslyn rx observable</PackageTags>
-        <PackageProjectUrl>https://github.com/fahall/LokiCat.Chickensoft.GodotNodeInterfaces.R3</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/fahall/LokiCat.Chickensoft.GodotNodeInterfaces.R3.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/fahall/LokiCat.GodotNodeInterfaces.Observables</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/fahall/LokiCat.GodotNodeInterfaces.Observables.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        <AssemblyName>LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator</AssemblyName>
+        <AssemblyName>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</AssemblyName>
         <EmbedAllSources>true</EmbedAllSources>
         <SourceLinkCreate>true</SourceLinkCreate>
-        <AssemblyTitle>LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator</AssemblyTitle>
+        <AssemblyTitle>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</AssemblyTitle>
         <Description>Generates AsObservable extensions for GodotNodeInterfaces</Description>
         <Company>LokiCat</Company>
-        <Product>LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator</Product>
+        <Product>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</Product>
         <DebugSymbols>true</DebugSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IsRoslynComponent>true</IsRoslynComponent>

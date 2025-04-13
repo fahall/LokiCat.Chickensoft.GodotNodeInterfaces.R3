@@ -37,10 +37,10 @@ jobs:
         uses: actions/setup-dotnet@v4
 
       - name: Build project
-        run: dotnet build src/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.csproj --configuration Release -p:Determinstic=true -p:ContinuousIntegrationBuild=true -p:PathMap=$(pwd)=.
+        run: dotnet build src/LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator/LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.csproj --configuration Release -p:Determinstic=true -p:ContinuousIntegrationBuild=true -p:PathMap=$(pwd)=.
 
       - name: Pack project
-        run: dotnet pack src/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.csproj --no-build --configuration Release --output "$NuGetDirectory" /p:Version=${{ inputs.version }}
+        run: dotnet pack src/LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator/LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.csproj --no-build --configuration Release --output "$NuGetDirectory" /p:Version=${{ inputs.version }}
 
       - name: Upload NuGet package
         uses: actions/upload-artifact@v4

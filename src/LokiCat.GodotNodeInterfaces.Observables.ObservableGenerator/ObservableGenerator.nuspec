@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>LokiCat.Chickensoft.GodotNodeInterfaces.R3</id>
+        <id>LokiCat.GodotNodeInterfaces.Observables</id>
         <version>0.0.0</version>
         <authors>Alex Hall</authors>
         <description>Generates AsObservable extensions for GodotNodeInterfaces</description>
@@ -9,8 +9,8 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
     </metadata>
     <files>
-        <file src="bin\Release\net7.0\LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.dll" target="lib\net7.0" />
-        <file src="buildTransitive\LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" target="buildTransitive" />
+        <file src="bin\Release\net7.0\LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.dll" target="lib\net7.0" />
+        <file src="buildTransitive\LokiCat.GodotNodeInterfaces.Observables.targets" target="buildTransitive" />
         <file src="ref\net7.0\_._" target="ref\net7.0" />
     </files>
 </package>

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.Interfaces;
 using Microsoft.CodeAnalysis;
 
-namespace LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator;
+namespace LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.Generators;
 
 internal class EventWrapperGenerator : IEventWrapperGenerator
 {

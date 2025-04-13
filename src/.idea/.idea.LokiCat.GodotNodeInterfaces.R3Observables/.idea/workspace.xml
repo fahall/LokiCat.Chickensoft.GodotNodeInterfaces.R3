@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8ef36c32-5958-438f-b7d9-2ddc94f421d0" name="Changes" comment="Fix package run">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/deploy-nuget.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/deploy-nuget.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/EventWrapperGenerationShould.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/EventWrapperGenerationShould.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/EventWrapperGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/EventWrapperGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/IEventWrapperGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/IEventWrapperGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/InterfaceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/InterfaceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/ObservableExtensionGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/ObservableExtensionGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/ObservableGenerator.nuspec" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/ObservableGenerator.nuspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/RoslynExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/RoslynExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/buildTransitive/LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/buildTransitive/LokiCat.Chickensoft.GodotNodeInterfaces.R3.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.sln" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.sln.DotSettings.user" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fahall&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fahall/LokiCat.Chickensoft.GodotNodeInterfaces.R3.git&quot;,
+    &quot;accountId&quot;: &quot;53c116da-2641-47de-b7cd-688d60456021&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/EventWrapperGenerationShould.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/bin/Release/net8.0/ObservableGenerator.Tests.deps.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests/obj/Debug/net8.0/ObservableGenerator.Tests.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/FAHal/repos/LokiCat.Chickensoft.GodotNodeInterfaces.R3/src/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/EventWrapperGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/IEventWrapperGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/InterfaceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/ObservableExtensionGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/RoslynExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/analyzers/dotnet/cs/net7.0/ObservableGenerator.deps.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/bin/Release/net7.0/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.deps.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator/obj/Debug/net7.0/ObservableGenerator.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/FAHal/repos/LokiCat.Chickensoft.GodotNodeInterfaces.R3/src/ObservableGenerator/ObservableExtensionGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2vb5r2rThkc32Pdg3asSVVeyP1b" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ef36c32-5958-438f-b7d9-2ddc94f421d0" name="Changes" comment="" />
+      <created>1744401127970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744401127970</updated>
+      <workItem from="1744401129282" duration="5141000" />
+      <workItem from="1744406574869" duration="29126000" />
+    </task>
+    <task id="LOCAL-00004" summary="Trying to get version">
+      <option name="closed" value="true" />
+      <created>1744402335250</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744402335250</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Managing release">
+      <option name="closed" value="true" />
+      <created>1744403372775</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744403372775</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Still trying to manage vernum">
+      <option name="closed" value="true" />
+      <created>1744403451294</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744403451294</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Still trying...">
+      <option name="closed" value="true" />
+      <created>1744403643787</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1744403643787</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Try using stuff from another project.">
+      <option name="closed" value="true" />
+      <created>1744403978323</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744403978323</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add tests">
+      <option name="closed" value="true" />
+      <created>1744404178428</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744404178428</updated>
+    </task>
+    <task id="LOCAL-00010" summary="try explicitly adding permissions">
+      <option name="closed" value="true" />
+      <created>1744404856000</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744404856000</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add required metadata for package">
+      <option name="closed" value="true" />
+      <created>1744404926313</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744404926313</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Metadata for nupkg">
+      <option name="closed" value="true" />
+      <created>1744404970122</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744404970122</updated>
+    </task>
+    <task id="LOCAL-00013" summary="syntax fix">
+      <option name="closed" value="true" />
+      <created>1744405006570</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744405006570</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Correctly point to packaged docs &amp; icons">
+      <option name="closed" value="true" />
+      <created>1744405141140</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744405141140</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Try packaging assets differently">
+      <option name="closed" value="true" />
+      <created>1744405354507</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744405354507</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add missing icon">
+      <option name="closed" value="true" />
+      <created>1744405579314</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744405579314</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add icon.">
+      <option name="closed" value="true" />
+      <created>1744405857408</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1744405857408</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix icon extension">
+      <option name="closed" value="true" />
+      <created>1744405972826</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1744405972826</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Update packing details">
+      <option name="closed" value="true" />
+      <created>1744406656092</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744406656092</updated>
+    </task>
+    <task id="LOCAL-00020" summary="build before pack">
+      <option name="closed" value="true" />
+      <created>1744406828937</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1744406828937</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Package config for dll">
+      <option name="closed" value="true" />
+      <created>1744406995283</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1744406995284</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Publish symbols too">
+      <option name="closed" value="true" />
+      <created>1744407056453</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1744407056453</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Include debug symbols">
+      <option name="closed" value="true" />
+      <created>1744407578554</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1744407578554</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Upload extra files">
+      <option name="closed" value="true" />
+      <created>1744407811602</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1744407811602</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Polishing nuget package">
+      <option name="closed" value="true" />
+      <created>1744407990062</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1744407990062</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Build observable generator specifically">
+      <option name="closed" value="true" />
+      <created>1744474233805</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1744474233805</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Upload nupkg to release and fix version numbering">
+      <option name="closed" value="true" />
+      <created>1744474792821</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1744474792821</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Build as an analyzer, not a dll">
+      <option name="closed" value="true" />
+      <created>1744475403848</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1744475403848</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Trying to build as generator">
+      <option name="closed" value="true" />
+      <created>1744475658251</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1744475658251</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Update build &amp; pack">
+      <option name="closed" value="true" />
+      <created>1744475972670</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1744475972670</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Build &amp; pack specific csproj">
+      <option name="closed" value="true" />
+      <created>1744476211727</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1744476211727</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Trying to fix build process as analyzer without dependencies">
+      <option name="closed" value="true" />
+      <created>1744477967865</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1744477967865</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Better pack">
+      <option name="closed" value="true" />
+      <created>1744478158050</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1744478158050</updated>
+    </task>
+    <task id="LOCAL-00034" summary="bash for pack">
+      <option name="closed" value="true" />
+      <created>1744478331995</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1744478331995</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Remove redundant restore">
+      <option name="closed" value="true" />
+      <created>1744478347761</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1744478347761</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Trying to get builds to succeed.">
+      <option name="closed" value="true" />
+      <created>1744478774878</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1744478774878</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Two step pack">
+      <option name="closed" value="true" />
+      <created>1744478845418</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1744478845418</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Powershell and ignore generated analyzers">
+      <option name="closed" value="true" />
+      <created>1744479011341</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1744479011341</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Use bash">
+      <option name="closed" value="true" />
+      <created>1744479092489</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1744479092489</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Different packing config">
+      <option name="closed" value="true" />
+      <created>1744479706894</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1744479706894</updated>
+    </task>
+    <task id="LOCAL-00041" summary="include pdb">
+      <option name="closed" value="true" />
+      <created>1744479854890</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1744479854890</updated>
+    </task>
+    <task id="LOCAL-00042" summary="More pkg config">
+      <option name="closed" value="true" />
+      <created>1744480055952</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1744480055952</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Explicit project name">
+      <option name="closed" value="true" />
+      <created>1744480787506</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1744480787506</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Fix analyzer ref by hardcoding">
+      <option name="closed" value="true" />
+      <created>1744489437982</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1744489437982</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Better dll copying">
+      <option name="closed" value="true" />
+      <created>1744490067511</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1744490067511</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Mkdir">
+      <option name="closed" value="true" />
+      <created>1744490506590</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1744490506590</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Generation almost working">
+      <option name="closed" value="true" />
+      <created>1744499467338</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1744499467338</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Fix generation">
+      <option name="closed" value="true" />
+      <created>1744516549099</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1744516549099</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Fix test paths">
+      <option name="closed" value="true" />
+      <created>1744516802542</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1744516802542</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Tests">
+      <option name="closed" value="true" />
+      <created>1744516854919</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1744516854919</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Fix tests and refactor">
+      <option name="closed" value="true" />
+      <created>1744518119101</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1744518119101</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Fix package run">
+      <option name="closed" value="true" />
+      <created>1744518384504</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1744518384504</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Build as an analyzer, not a dll" />
+    <MESSAGE value="Trying to build as generator" />
+    <MESSAGE value="Update build &amp; pack" />
+    <MESSAGE value="Build &amp; pack specific csproj" />
+    <MESSAGE value="Trying to fix build process as analyzer without dependencies" />
+    <MESSAGE value="Better pack" />
+    <MESSAGE value="bash for pack" />
+    <MESSAGE value="Remove redundant restore" />
+    <MESSAGE value="Trying to get builds to succeed." />
+    <MESSAGE value="Two step pack" />
+    <MESSAGE value="Powershell and ignore generated analyzers" />
+    <MESSAGE value="Use bash" />
+    <MESSAGE value="Different packing config" />
+    <MESSAGE value="include pdb" />
+    <MESSAGE value="More pkg config" />
+    <MESSAGE value="Explicit project name" />
+    <MESSAGE value="Fix analyzer ref by hardcoding" />
+    <MESSAGE value="Better dll copying" />
+    <MESSAGE value="Mkdir" />
+    <MESSAGE value="Generation almost working" />
+    <MESSAGE value="Fix generation" />
+    <MESSAGE value="Fix test paths" />
+    <MESSAGE value="Tests" />
+    <MESSAGE value="Fix tests and refactor" />
+    <MESSAGE value="Fix package run" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix package run" />
+  </component>
+</project>

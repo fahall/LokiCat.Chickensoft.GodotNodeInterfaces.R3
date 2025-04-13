@@ -1,5 +1,0 @@
-﻿<Project>
-    <ItemGroup>
-        <Analyzer Include="$(MSBuildThisFileDirectory)..\analyzers\dotnet\cs\LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.dll" />
-    </ItemGroup>
-</Project>
