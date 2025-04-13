@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator", "LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator\LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.csproj", "{080369E7-F8F4-4550-ACDD-70890B6F3CA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservableGenerator.Tests", "ObservableGenerator.Tests\ObservableGenerator.Tests.csproj", "{B24973A3-2459-4EA7-AE63-E5BBF3B699A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator", "LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests\LokiCat.Chickensoft.GodotNodeInterfaces.R3.ObservableGenerator.Tests.csproj", "{B24973A3-2459-4EA7-AE63-E5BBF3B699A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
