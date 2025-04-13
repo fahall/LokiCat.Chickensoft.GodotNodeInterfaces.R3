@@ -37,6 +37,10 @@
         <Product>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</Product>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(BuildingForTest)' == 'true'">
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+    </PropertyGroup>
+
     <!-- This ensures DLL, PDB, XML are placed in analyzers folder -->
     <ItemGroup>
         <Analyzer Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
