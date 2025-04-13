@@ -32,6 +32,7 @@
         <Description>Generates AsObservable extensions for GodotNodeInterfaces</Description>
         <Company>LokiCat</Company>
         <Product>LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator</Product>
+        <IncludeSymbols>true</IncludeSymbols>
         <DebugSymbols>true</DebugSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IsRoslynComponent>true</IsRoslynComponent>
