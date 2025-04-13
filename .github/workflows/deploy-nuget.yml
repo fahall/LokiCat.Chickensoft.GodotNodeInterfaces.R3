@@ -79,7 +79,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
       - name: Run tests
-        run: dotnet test ${{ vars.SOURCE_ROOT }} --configuration Release -p:BuildingForTest=true
+        run: dotnet test ${{ vars.SOURCE_ROOT }} --configuration Release
 
   deploy:
     if: ${{ inputs.deploy }}
