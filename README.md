@@ -1,2 +1,1 @@
-# LokiCat.GodotNodeInterfaces.Observables
-Automatically extends events created in Chickensoft GodotNodeInterfaces for use as R3 Observables
+C:/Users/FAHal/repos/LokiCat.GodotNodeInterfaces.Observables/src/LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator/docs/README.md
