@@ -9,9 +9,96 @@
 
 ## Overview
 
-This project provides a **Roslyn source generator** that automatically creates [R3](https://github.com/vrld/R3) observable extensions for each signal exposed by the [`Chickensoft.GodotNodeInterfaces`](https://github.com/chickensoft-games/godot-node-interfaces) interfaces.
+This project provides a **Roslyn source generator** that automatically creates [R3](https://github.com/Cysharp/R3) observable extensions for each signal exposed by the [`Chickensoft.GodotNodeInterfaces`](https://github.com/chickensoft-games/godot-node-interfaces) interfaces.
 
 You get strongly typed, composable observables that make it easy to work with Godot signals in a reactive way using R3.
+
+### Why bother?
+
+1. We want to program to Interfaces (see: [Chickensoft.GodotNodeInterfaces](https://github.com/chickensoft-games/GodotNodeInterfaces))
+2. We want to use Reactive X style Observables for signal management (see: [R3](https://github.com/Cysharp/R3) )
+3. [R3](https://github.com/Cysharp/R3) provides a limited set of preconfigured Observable wrappers
+4. LokiCat.GodotNodeInterfaces.Observables: Now we can have Rx & program to interfaces without having to write wrappers every time!
+
+Lets look at an example:
+
+Lets say you have a menu that uses a button `IBaseButton`, and you want to use an Observable for the `Toggled` signal of that button.
+
+#### Pure C# Events w/ GodotNodeInterface
+* :white_check_mark: We get the behavior we want. 
+2. :x: We have to manage the subscription and unsubscription ourselves. 
+3. :x: We want ReactiveX
+
+```csharp
+public partial class MyMenu : IBaseButton {
+    
+    private IBaseButton doSomethingButton;
+    public void OnReady() {
+       doSomethingButton.Pressed += DoSomething;
+    }
+    
+    public void OnExitTree() {
+        // We have to remember to unsubscribe. 
+        // Not difficult, but easy to forget when managing behavior in multiple places.
+        doSomething.Pressed -= DoSomething;    
+    }
+    
+    private void DoSomething(bool isToggledOn) { /* Do stuff */ }
+}
+```
+
+#### Using an R3 Observable
+Here, we're using R3 to manually wrap our events into Observables
+
+* :white_check_mark: We get the behavior we want.
+* :white_check_mark: Only manage it in one place
+* :white_check_mark: We have ReactiveX
+* :x: Observable takes quite a few lines to setup
+* :x: Some of the Godot EventHandler types involve more casting than this example.
+
+```csharp
+public partial class MyMenu : IBaseButton {
+    
+    private IBaseButton doSomethingButton;
+    
+    public void OnReady() {
+       Observable.FromEvent<ToggledEventHandler, bool>(
+           h => (toggledOn) => h(toggledOn), // We could use a lambda here, if we wanted.
+           h => doSomethingButton.Toggled += h,
+           h => doSomethingButton.Toggled -= h,
+           cancellationToken // Optional
+       ).Subscribe(DoSomething)
+       .AddTo(this); // Cleanup happens here now. Yay!
+    }
+    
+    private void DoSomething(bool isToggledOn) { /* Do stuff */ }
+}
+```
+
+#### Using LokiCat.GodotNodeInterfaces.Observables
+* :white_check_mark: We get the behavior we want.
+* :white_check_mark: Only manage it in one place
+* :white_check_mark: We have ReactiveX
+* :white_check_mark: Observables ready-to-use
+* :white_check_mark: No explicit casting to fiddle with or extra code to write
+* :white_check_mark: We can use lambdas too!
+
+```csharp
+public partial class MyMenu : IBaseButton {
+    
+    private IBaseButton doSomethingButton;
+    
+    public void OnReady() {
+       doSomethingButton.OnPressedAsObservable() 
+           .Subscribe(DoSomething) 
+           .AddTo(this); 
+    }
+    
+    private void DoSomething(bool isToggledOn) { /* Do stuff */ }
+}
+
+```
+
 
 ---
 
@@ -113,7 +200,7 @@ button.OnPressedAsObservable()
 ## ⚙️ Dependencies
 
 - [.NET 7+](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
-- [R3](https://github.com/vrld/R3)
+- [R3](https://github.com/Cysharp/R3)
 - [Chickensoft.GodotNodeInterfaces](https://github.com/chickensoft-games/godot-node-interfaces)
 
 ---
@@ -165,7 +252,7 @@ dotnet pack -c Release
 ## 🙏 Credits
 
 - [Chickensoft](https://github.com/chickensoft-games) for the base interfaces
-- [R3](https://github.com/vrld/R3) for a clean observable abstraction
+- [R3](https://github.com/Cysharp/R3) for a clean observable abstraction
 - [Godot C# community](https://github.com/godotengine/godot) for enabling signal-first development
 
 ---
