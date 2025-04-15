@@ -30,9 +30,10 @@ Lets say you have a menu that uses a button `IBaseButton`, and you want to use a
 3. :x: We want ReactiveX
 
 ```csharp
-public partial class MyMenu : IBaseButton {
+public partial class MyMenu : Control, IControl {
     
     private IBaseButton doSomethingButton;
+
     public void OnReady() {
        doSomethingButton.Pressed += DoSomething;
     }
@@ -57,7 +58,7 @@ Here, we're using R3 to manually wrap our events into Observables
 * :x: Some of the Godot EventHandler types involve more casting than this example.
 
 ```csharp
-public partial class MyMenu : IBaseButton {
+public partial class MyMenu : Control, IControl {
     
     private IBaseButton doSomethingButton;
     
@@ -84,7 +85,7 @@ public partial class MyMenu : IBaseButton {
 * :white_check_mark: We can use lambdas too!
 
 ```csharp
-public partial class MyMenu : IBaseButton {
+public partial class MyMenu : Control, IControl {
     
     private IBaseButton doSomethingButton;
     
