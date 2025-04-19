@@ -4,9 +4,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.SyntaxHelpers;
 
-public class Namespace
+public static class Namespace
 {
-    public static string GetNamespace(SyntaxNode node) =>
-        node.Ancestors().OfType<NamespaceDeclarationSyntax>().FirstOrDefault()?.Name.ToString()
-        ?? "Global";
+    public static string GetNamespace(SyntaxNode node) {
+        return node.Ancestors()
+                   .OfType<BaseNamespaceDeclarationSyntax>()
+                   .FirstOrDefault()
+                   ?.Name.ToString() ?? "Global";
+    }
 }
