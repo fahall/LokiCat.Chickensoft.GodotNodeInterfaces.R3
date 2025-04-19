@@ -64,7 +64,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
                                      ?
                                      .GetNamespaceTypesRecursive()
                                      .Where(t => t.TypeKind == TypeKind.Interface)
-                                     .ToList() ?? new();
+                                     .ToList() ?? [];
 
         context.ReportDiagnostic(Diagnostic.Create(
                                      new DiagnosticDescriptor("OBS001", "Observe",
@@ -152,7 +152,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
             "Godot",
         };
 
-        AddNamespace(iface.ContainingNamespace);
+        AddNamespace(nsSet, iface.ContainingNamespace);
 
         foreach (var ev in events)
         {
@@ -161,7 +161,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
                 continue;
             }
 
-            AddNamespace(handler.ContainingNamespace);
+            AddNamespace(nsSet, handler.ContainingNamespace);
             var invoke = handler.DelegateInvokeMethod;
 
             if (invoke == null)
@@ -169,29 +169,34 @@ public class ObservableExtensionGenerator : ISourceGenerator
                 continue;
             }
 
-            foreach (var p in invoke.Parameters)
-            {
-                AddNamespace(p.Type.ContainingNamespace);
-
-                if (p.Type is not INamedTypeSymbol gen || !gen.IsGenericType)
-                {
-                    continue;
-                }
-
-                foreach (var arg in gen.TypeArguments.OfType<INamedTypeSymbol>())
-                {
-                    AddNamespace(arg.ContainingNamespace);
-                }
-            }
+            ScanParameters(nsSet, invoke);
         }
 
         return nsSet.OrderBy(n => n);
-
-        void AddNamespace(INamespaceSymbol? ns)
+        
+    }
+    
+    private static void AddNamespace(ICollection<string> namespaceSet,  INamespaceSymbol? ns)
+    {
+        if (ns is { IsGlobalNamespace: false })
         {
-            if (ns != null && !ns.IsGlobalNamespace)
+            namespaceSet.Add(ns.ToDisplayString());
+        }
+    }
+    private static void ScanParameters(ICollection<string> namespaceSet, IMethodSymbol invoke)
+    {
+        foreach (var p in invoke.Parameters)
+        {
+            AddNamespace(namespaceSet, p.Type.ContainingNamespace);
+
+            if (p.Type is not INamedTypeSymbol { IsGenericType: true } gen)
             {
-                nsSet.Add(ns.ToDisplayString());
+                continue;
+            }
+
+            foreach (var arg in gen.TypeArguments.OfType<INamedTypeSymbol>())
+            {
+                AddNamespace(namespaceSet, arg.ContainingNamespace);
             }
         }
     }

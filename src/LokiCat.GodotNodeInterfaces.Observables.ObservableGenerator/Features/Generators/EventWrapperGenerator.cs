@@ -7,8 +7,10 @@ namespace LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Features.G
 
 internal class EventWrapperGenerator : IEventWrapperGenerator
 {
-    public IEnumerable<string> BuildEventWrappers(INamedTypeSymbol iface, List<IEventSymbol> events) =>
-        events.Select(e => GetEventWrapper(e, iface));
+    public IEnumerable<string> BuildEventWrappers(INamedTypeSymbol iface, List<IEventSymbol> events)
+    {
+        return events.Select(e => GetEventWrapper(e, iface));
+    }
 
     public string GetEventWrapper(IEventSymbol ev, INamedTypeSymbol iface)
     {
@@ -37,8 +39,7 @@ internal class EventWrapperGenerator : IEventWrapperGenerator
 
         // Detect if the delegate type has a usable constructor (e.g., public Foo(Action<X>))
         var hasConstructor = handler.Constructors.Any(c =>
-                                                          c.DeclaredAccessibility == Accessibility.Public &&
-                                                          c.Parameters.Length == 1 &&
+                                                          c is { DeclaredAccessibility: Accessibility.Public, Parameters.Length: 1 } &&
                                                           c.Parameters[0].Type.TypeKind == TypeKind.Delegate
         );
 

@@ -7,28 +7,33 @@ namespace LokiCat.GodotNodeInterfaces.Observables.ObservableGenerator.Tests;
 
 public class EventWrapperGenerationShould {
     
-    private static Compilation CreateCompilation(string source) =>
-        CSharpCompilation.Create("TestAssembly",
-                                 new[] { CSharpSyntaxTree.ParseText(source) },
-                                 new[] {
-                                     MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-                                     MetadataReference.CreateFromFile(typeof(CancellationToken).Assembly.Location),
-                                     MetadataReference.CreateFromFile(typeof(System.Runtime.CompilerServices.DynamicAttribute).Assembly.Location),
-                                     MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location)
-                                 },
-                                 new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
+    private static CSharpCompilation CreateCompilation(string source)
+    {
+        return CSharpCompilation.Create("TestAssembly",
+                                        [CSharpSyntaxTree.ParseText(source)],
+                                        [
+                                            MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
+                                            MetadataReference.CreateFromFile(
+                                                typeof(CancellationToken).Assembly.Location),
+                                            MetadataReference.CreateFromFile(
+                                                typeof(System.Runtime.CompilerServices.DynamicAttribute).Assembly
+                                                    .Location),
+                                            MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
+                                        ],
+                                        new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
         );
+    }
 
     [Fact]
     public void GenerateZeroParameterDelegates() {
-        const string code = """
+        const string CODE = """
                             using System;
                             public interface IFoo {
                               event Action NoParams;
                             }
                             """;
 
-        var wrapper = GenerateWrapper(code, "NoParams");
+        var wrapper = GenerateWrapper(CODE, "NoParams");
         wrapper.Should().Contain("Observable<Unit>");
         wrapper.Should().Contain("Observable.FromEvent");
         wrapper.Should().Contain("+= h");
@@ -36,7 +41,7 @@ public class EventWrapperGenerationShould {
 
     [Fact]
     public void GenerateOneParameterDelegatesWithConstructors() {
-        const string code = """
+        const string CODE = """
                             using System;
                             public delegate void CustomHandler(string value);
                             public interface IFoo {
@@ -44,21 +49,21 @@ public class EventWrapperGenerationShould {
                             }
                             """;
 
-        var wrapper = GenerateWrapper(code, "OneParam");
+        var wrapper = GenerateWrapper(CODE, "OneParam");
         wrapper.Should().Contain("Observable<string>");
         wrapper.Should().Contain("CustomHandler");
     }
 
     [Fact]
     public void GenerateOneParameterDelegatesWithoutConstructors() {
-        const string code = """
+        const string CODE = """
                             using System;
                             public interface IFoo {
                               event Action<string> OneParam;
                             }
                             """;
 
-        var wrapper = GenerateWrapper(code, "OneParam");
+        var wrapper = GenerateWrapper(CODE, "OneParam");
         wrapper.Should().Contain("Observable<string>");
         wrapper.Should().Contain("Action<string>");
         wrapper.Should().Contain("(obj) => h(obj)");
@@ -66,7 +71,7 @@ public class EventWrapperGenerationShould {
 
     [Fact]
     public void GenerateMultipleParameterDelegates() {
-        const string code = """
+        const string CODE = """
                             using System;
                             public delegate void MyEvent(string a, int b);
                             public interface IFoo {
@@ -74,7 +79,7 @@ public class EventWrapperGenerationShould {
                             }
                             """;
 
-        var wrapper = GenerateWrapper(code, "Complex");
+        var wrapper = GenerateWrapper(CODE, "Complex");
 
         wrapper.Should().Contain("Observable<(string, int)>");
         wrapper.Should().Contain("(string a, int b)");
@@ -83,7 +88,7 @@ public class EventWrapperGenerationShould {
 
     [Fact]
     public void GenerateNothingWhenEventMissingAddOrRemove() {
-        const string code = """
+        const string CODE = """
                             using System;
                             public interface IFoo {
                               event Action Broken {
@@ -93,20 +98,20 @@ public class EventWrapperGenerationShould {
                             }
                             """;
 
-        var wrapper = GenerateWrapper(code, "Broken");
+        var wrapper = GenerateWrapper(CODE, "Broken");
         wrapper.Should().BeEmpty();
     }
 
     [Fact]
     public void GenerateNothingWhenEventDelegateInvalid() {
-        const string code = """
+        const string CODE = """
                             using System;
                             public interface IFoo {
                               event int NotADelegate;
                             }
                             """;
 
-        var wrapper = GenerateWrapper(code, "NotADelegate");
+        var wrapper = GenerateWrapper(CODE, "NotADelegate");
         wrapper.Should().BeEmpty();
     }
 

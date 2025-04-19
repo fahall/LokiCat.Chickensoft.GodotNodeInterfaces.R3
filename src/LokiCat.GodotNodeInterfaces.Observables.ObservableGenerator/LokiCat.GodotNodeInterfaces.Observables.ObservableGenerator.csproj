@@ -53,6 +53,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Features\SyntaxHelpers\" />
       <Folder Include="Properties\" />
     </ItemGroup>
 
