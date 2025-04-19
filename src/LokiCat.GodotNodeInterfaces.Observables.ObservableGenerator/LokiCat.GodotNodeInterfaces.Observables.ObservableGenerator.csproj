@@ -36,6 +36,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IsRoslynComponent>true</IsRoslynComponent>
         <Nullable>enable</Nullable>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
