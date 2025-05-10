@@ -35,7 +35,7 @@ public class ObservableExtensionGenerator : ISourceGenerator
                                      Location.None));
         
         try {
-            foreach (var iface in GetInterfaces(context)) {
+            foreach (var iface in context.GetGodotNodeInterfaces()) {
                 ExtendInterface(context, iface);
             }
         }
@@ -51,29 +51,6 @@ public class ObservableExtensionGenerator : ISourceGenerator
                                          Location.None
                                      ));
         }
-    }
-
-    private static List<INamedTypeSymbol> GetInterfaces(GeneratorExecutionContext context)
-    {
-        var godotInterfaces = context.Compilation.GlobalNamespace
-                                     .GetNamespaceMembers()
-                                     .FirstOrDefault(n => n.Name == "Chickensoft")
-                                     ?
-                                     .GetNamespaceMembers()
-                                     .FirstOrDefault(n => n.Name == "GodotNodeInterfaces")
-                                     ?
-                                     .GetNamespaceTypesRecursive()
-                                     .Where(t => t.TypeKind == TypeKind.Interface)
-                                     .ToList() ?? [];
-
-        context.ReportDiagnostic(Diagnostic.Create(
-                                     new DiagnosticDescriptor("OBS001", "Observe",
-                                                              $"Found {godotInterfaces.Count} GodotNodeInterfaces interfaces",
-                                                              "ObservableGenerator", DiagnosticSeverity.Info, true),
-                                     Location.None
-                                 ));
-
-        return godotInterfaces;
     }
 
     private void ExtendInterface(GeneratorExecutionContext context, INamedTypeSymbol iface)
